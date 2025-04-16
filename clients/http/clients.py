@@ -1,10 +1,10 @@
 import typing
 import allure
 import requests
-from requests import Response
 from requests.auth import AuthBase
 from requests.cookies import RequestsCookieJar
-from utils.helpers import attach_request_and_response
+from requests import Response, RequestException
+from utils.helpers import attach_request_and_response, attach_request_exception
 
 
 class HTTPClient(requests.Session):
@@ -28,18 +28,22 @@ class HTTPClient(requests.Session):
             allow_redirects: bool = True,
             **kwargs
     ) -> Response:
-        response = super().get(
-            url=self._base_url + url,
-            params=params,
-            headers=headers,
-            cookies=cookies,
-            auth=auth,
-            timeout=timeout,
-            allow_redirects=allow_redirects,
-            **kwargs
-        )
-        attach_request_and_response(response)
-        return response
+        try:
+            response = super().get(
+                url=self._base_url + url,
+                params=params,
+                headers=headers,
+                cookies=cookies,
+                auth=auth,
+                timeout=timeout,
+                allow_redirects=allow_redirects,
+                **kwargs
+            )
+            attach_request_and_response(response)
+            return response
+        except RequestException as e:
+            attach_request_exception(e)
+            raise
 
     @allure.step('Performing POST request to "{url}"')
     def post(
@@ -57,21 +61,25 @@ class HTTPClient(requests.Session):
             allow_redirects: bool = True,
             **kwargs
     ) -> Response:
-        response = super().post(
-            url=self._base_url + url,
-            data=data,
-            json=json,
-            files=files,
-            params=params,
-            headers=headers,
-            cookies=cookies,
-            auth=auth,
-            timeout=timeout,
-            allow_redirects=allow_redirects,
-            **kwargs
-        )
-        attach_request_and_response(response)
-        return response
+        try:
+            response = super().post(
+                url=self._base_url + url,
+                data=data,
+                json=json,
+                files=files,
+                params=params,
+                headers=headers,
+                cookies=cookies,
+                auth=auth,
+                timeout=timeout,
+                allow_redirects=allow_redirects,
+                **kwargs
+            )
+            attach_request_and_response(response)
+            return response
+        except RequestException as e:
+            attach_request_exception(e)
+            raise
 
     @allure.step('Performing PATCH request to "{url}"')
     def patch(
@@ -89,21 +97,25 @@ class HTTPClient(requests.Session):
             allow_redirects: bool = True,
             **kwargs
     ) -> Response:
-        response = super().patch(
-            url=self._base_url + url,
-            data=data,
-            json=json,
-            files=files,
-            params=params,
-            headers=headers,
-            cookies=cookies,
-            auth=auth,
-            timeout=timeout,
-            allow_redirects=allow_redirects,
-            **kwargs
-        )
-        attach_request_and_response(response)
-        return response
+        try:
+            response = super().patch(
+                url=self._base_url + url,
+                data=data,
+                json=json,
+                files=files,
+                params=params,
+                headers=headers,
+                cookies=cookies,
+                auth=auth,
+                timeout=timeout,
+                allow_redirects=allow_redirects,
+                **kwargs
+            )
+            attach_request_and_response(response)
+            return response
+        except RequestException as e:
+            attach_request_exception(e)
+            raise
 
     @allure.step('Performing DELETE request to "{url}"')
     def delete(
@@ -118,19 +130,22 @@ class HTTPClient(requests.Session):
             allow_redirects: bool = True,
             **kwargs
     ) -> Response:
-        response = super().delete(
-            url=self._base_url + url,
-            params=params,
-            headers=headers,
-            cookies=cookies,
-            auth=auth,
-            timeout=timeout,
-            allow_redirects=allow_redirects,
-            **kwargs
-        )
-        attach_request_and_response(response)
-        return response
-
+        try:
+            response = super().delete(
+                url=self._base_url + url,
+                params=params,
+                headers=headers,
+                cookies=cookies,
+                auth=auth,
+                timeout=timeout,
+                allow_redirects=allow_redirects,
+                **kwargs
+            )
+            attach_request_and_response(response)
+            return response
+        except RequestException as e:
+            attach_request_exception(e)
+            raise
 
 class APIClient:
     """

@@ -2,7 +2,7 @@ import os
 import allure
 import json
 from pathlib import Path
-from requests import Response
+from requests import Response, RequestException
 from settings import settings
 
 
@@ -28,6 +28,15 @@ def attach_request_and_response(response: Response):
             f"Status: {response.status_code}\n\nHeaders:\n{response.headers}\n\nBody:\n{body}",
             name="Response",
             attachment_type=attachment_type
+        )
+
+
+def attach_request_exception(exception: RequestException):
+    with allure.step("Request failed"):
+        allure.attach(
+            str(exception),
+            name="Exception message",
+            attachment_type=allure.attachment_type.TEXT
         )
 
 
