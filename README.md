@@ -39,7 +39,7 @@ PoetryDB [Github](https://github.com/thundercomb/poetrydb#readme)
 ###### Setup
 
 ```bash
-git clone https://github.com/froislove/sporty_hometest_api.git
+git clone https://github.com/froislove/api.git
 cd api
 python -m venv venv
 source venv/bin/activate
