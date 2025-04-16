@@ -64,12 +64,15 @@ class TestAuthors:
     # actual results can be retrieved from db
     def test_line_counts(self, authors_api_client, case):
         client: AuthorClient = authors_api_client
+        author = case.get('author')
+        expected_lines_count = case.get('expected_count')
 
-        response = client.get_author_with_output_fields(author_name=case.get('author'),
+        response = client.get_author_with_output_fields(author_name=author,
                                                         output_fields=['linecount'])
 
         assert_status_code(response, 200)
         for element in response.json():
             result = Author.model_validate(element)
-            with allure.step(f"Assert count of lines is equal {case.get('expected_count')}"):
-                assert int(result.linecount) == case.get('expected_count')
+            with allure.step(f"Assert count of lines is equal {expected_lines_count}"):
+                assert int(result.linecount) == expected_lines_count, \
+                    f'Amount of lines {author} isn\'t equal {expected_lines_count}'
