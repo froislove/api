@@ -73,3 +73,17 @@ allure serve allure-results
 1) Response status code validation is included in all API tests as a baseline check.
 2) Schema validation is implemented in the test suite "API Schema Validation" and is intended primarily for smoke testing.
 3) Target field checks using Pydantic models serve two purposes: to enforce stricter structural and type validation, and to enable functional assertions within test cases.
+
+###### Test cases
+
+| Test Case | Description                                                                            | Steps                                                                                               | Expected Result                    | Validation                                              |
+|-----------|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|------------------------------------|---------------------------------------------------------|
+| TC001     | Basic schema validation for all authors                                                | 1. Send `GET /author/`  <br> 2. Check response structure                                            | Response schema is valid           | JSON schema validation                                  |
+| TC002     | Basic schema validation for /author/<author> search                                    | 1. Send `GET /author/Algernon Charles Swinburne` <br> 2. Check response structure                   | Response schema is valid           | SON schema validation                                   |
+| TC003     | Basic schema validation for /author/<author>/author search                             | 1. Send `GET /author/Algernon Charles Swinburne/author` <br> 2. Check response structure            | Response schema is valid           | SON schema validation                                   |
+| TC004     | Negative case: unknown author                                                          | 1. Send `GET /author/Invalid` <br> 2. Check status code and content                                 | code: `404`, message: Not found    | Fields assertion                                        |
+| TC005     | Positive parametrized case: checking valid amount of linecounts in response for author | 1. Send `GET /author/<author>/author/linecount` <br> 2. Check actual and expected fields linecount | Matched expected and actual values | Fields assertion throught models verification |
+
+
+> **Note:** `TC005` may fail  due to inconsistent responses from the API server.  
+> This behavior can be considered a potential issue on the API implementation side rather than a test failure.
