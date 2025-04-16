@@ -19,20 +19,21 @@ PoetryDB [Github](https://github.com/thundercomb/poetrydb#readme)
 ---
 
 ###### Project structure
-.  
-├── clients/ # HTTP, API client (requests wrapper)  
-├── models/ # Pydantic models for API responses  
-├── schemas/ # JSON schemas (generated)  
-├── test_data/ # Input test data  
-├── tests/ # API tests  
-├── utils/ # Reusable utils   
-├── validations/ # Validation functions
-├── conftest.py # Fixtures
-└── pytest.ini
-└── README.md  
-├── requirements.txt  
-└── README.md  
-└── settings.py
+
+- clients/ # HTTP, API client (requests wrapper)  
+- models/ # Pydantic models for API responses  
+- schemas/ # JSON schemas (generated)  
+- test_data/ # Input test data  
+- tests/ # API tests  
+- utils/ # Reusable utils   
+- validations/ # Validation functions
+- conftest.py # Fixtures
+- pytest.ini
+- README.md  
+- requirements.txt  
+- README.md  
+- settings.py
+
 ---
 
 ###### Setup
