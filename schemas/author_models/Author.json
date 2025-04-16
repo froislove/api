@@ -1,0 +1,29 @@
+{
+  "properties": {
+    "author": {
+      "default": null,
+      "title": "Author",
+      "type": "string"
+    },
+    "title": {
+      "default": null,
+      "title": "Title",
+      "type": "string"
+    },
+    "lines": {
+      "default": null,
+      "items": {
+        "type": "string"
+      },
+      "title": "Lines",
+      "type": "array"
+    },
+    "linecount": {
+      "default": null,
+      "title": "Linecount",
+      "type": "string"
+    }
+  },
+  "title": "Author",
+  "type": "object"
+}

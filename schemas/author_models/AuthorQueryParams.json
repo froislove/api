@@ -1,0 +1,103 @@
+{
+  "$defs": {
+    "OutputField": {
+      "description": "[/<output field>] query parameter",
+      "enum": [
+        "author",
+        "title",
+        "lines",
+        "linecount",
+        "all"
+      ],
+      "title": "OutputField",
+      "type": "string"
+    },
+    "ResponseFormat": {
+      "description": "[.<format>] query parameter",
+      "enum": [
+        "json",
+        "text"
+      ],
+      "title": "ResponseFormat",
+      "type": "string"
+    },
+    "SearchTerm": {
+      "description": "<search term> query parameter",
+      "enum": [
+        "author",
+        "title",
+        "lines",
+        "linecount",
+        "poemcount",
+        "random"
+      ],
+      "title": "SearchTerm",
+      "type": "string"
+    },
+    "SearchType": {
+      "const": "abs",
+      "description": "<search type> query parameter",
+      "enum": [
+        "abs"
+      ],
+      "title": "SearchType",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "search_terms": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/SearchTerm"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Search Terms"
+    },
+    "search_type": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SearchType"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "output_fields": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/OutputField"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Output Fields"
+    },
+    "format": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ResponseFormat"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "AuthorQueryParams",
+  "type": "object"
+}

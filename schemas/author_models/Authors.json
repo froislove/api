@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "authors": {
+      "default": null,
+      "items": {
+        "type": "string"
+      },
+      "title": "Authors",
+      "type": "array"
+    }
+  },
+  "title": "Authors",
+  "type": "object"
+}

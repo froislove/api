@@ -1,0 +1,31 @@
+{
+  "properties": {
+    "author": {
+      "title": "Author",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "lines": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Lines",
+      "type": "array"
+    },
+    "linecount": {
+      "title": "Linecount",
+      "type": "string"
+    }
+  },
+  "required": [
+    "author",
+    "title",
+    "lines",
+    "linecount"
+  ],
+  "title": "AuthorAllFieldsPresence",
+  "type": "object"
+}
